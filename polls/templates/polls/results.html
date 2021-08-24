@@ -1,0 +1,15 @@
+{% extends "polls/base.html" %}
+
+{% block content%}
+<div class="container my-4">
+    <h1>{{question.question_text}}</h1>
+
+<ul class="list-unstyled text-center">
+    {% for choice in question.choice_set.all %}
+        <li class="my-3"><span class="mx-5"><strong>{{choice.choice_text}}</strong></span>  <span class="btn btn-sm btn-primary">{{choice.votes}} vote {{choice.votes|pluralize}}</span></li>
+    {% endfor %}
+</ul>
+<a class="btn btn-dark"href="{%url 'polls:detail' question.id %}">Vote Again?</a>
+<a class="btn btn-dark"href="{%url 'polls:index' %}">Back to Home</a>
+</div>
+{% endblock %}
